@@ -103,6 +103,7 @@ class ClusterRegistryDiscoverer:
                 # only consider "ready" clusters
                 if row.get("lifecycle_status", "ready") == "ready":
                     config = KubeConfig.from_url(row["api_server_url"])
+                    config.cluster["insecure-skip-tls-verify"] = True
                     client = HTTPClient(config)
                     client.session.auth = OAuth2BearerTokenAuth(
                         self._oauth2_bearer_token_path

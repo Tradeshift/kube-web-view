@@ -413,6 +413,7 @@ async def get_cluster_list(request, session):
 @aiohttp_jinja2.template("cluster.html")
 @context()
 async def get_cluster(request, session):
+
     cluster = request.app[CLUSTER_MANAGER].get(request.match_info["cluster"])
     namespaces = await kubernetes.get_list(
         wrap_query(Namespace.objects(cluster.api), request, session)
