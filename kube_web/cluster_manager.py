@@ -60,6 +60,7 @@ class ClusterManager:
 
     @property
     def clusters(self):
+        self.reload()        
         return list(self._clusters.values())
 
     def get(self, cluster: str):
